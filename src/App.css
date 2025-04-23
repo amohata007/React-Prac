@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid black;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  width: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar > ul {
+  display: flex;
+}
+
+.navbar > ul > li {
+  margin: 10px;
+  font-size: 25px;
+  list-style-type: none;
+}
+
+.search {
+  margin: 10px;
+}
+
+.res-card {
+  padding: 10px;
+  /* height: 260px; */
+  width: 250px;
+  margin: 5px;
+
+  background-color: #f0f0f0;
+}
+
+.res-card:hover {
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin: 5px;
+}
+
+.res-logo {
+  width: 100%;
+  height: 150px;
+}
+
+.shimmer-card {
+  height: 220px;
+  width: 280px;
+  margin: 5px;
+  background-color: #f0f0f0;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn-login {
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
 }
