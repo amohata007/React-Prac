@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import ResCategory from "./ResCategory";
 
 const RestaurantDetails = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -28,27 +29,26 @@ const RestaurantDetails = () => {
   const { name, areaName, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
 
-  const itemCards =
-    resInfo?.cards
-      ?.find((card) => card?.groupedCard)
-      ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.flatMap(
-        (c) => c?.card?.card?.itemCards || []
-      ) || [];
+  const list =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (c) =>
+        c.card?.card?.["@type"] ==
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  console.log(list, "list");
 
   return (
-    <div className="res-details">
-      <h3>{name}</h3>
-      <h4>{costForTwoMessage}</h4>
-      <h4>{cuisines?.join(", ")}</h4>
-      <h4>Menu Items:</h4>
-      <ul>
-        {itemCards.map((item, index) => (
-          <li key={`${item.card.info.id}-${index}`}>
-            {item.card.info.name} - ₹
-            {(item.card.info.defaultPrice / 100) | (item.card.info.price / 100)}
-          </li>
-        ))}
-      </ul>
+    <div className="text-center">
+      <h3 className="font-bold m-2 p-2 text-lg">
+        {name} - {costForTwoMessage}
+      </h3>
+      <h3 className="font-semibold m-1 p-1">
+        Famous for - {cuisines.join(" ,")}
+      </h3>
+      <h3 className="font-semibold">Location - {areaName}</h3>
+      {list.map((cat) => (
+        <ResCategory data={cat.card?.card} />
+      ))}
     </div>
   );
 };
